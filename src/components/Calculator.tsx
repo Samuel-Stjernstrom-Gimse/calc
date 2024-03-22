@@ -1,47 +1,48 @@
 import { Button } from './Button.tsx'
 import { useState } from 'react'
+import { Screen } from './Screen.tsx'
 
 export const Calculator = () => {
-	const numberArray: (string | number)[] = [7, 8, 9, 4, 5, 6, 1, 2, 2, 0, '.', '=']
-	const symArray: string[] = ['/', '*', '-', '+']
-	const [currentStep, setCurrentStep] = useState<string>(0)
-	const currentCalculation = []
+	const numberArray: string[] = ['(', ')', 'del', '7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '=']
+	const operatorsArray: string[] = ['/', '*', '-', '+', 'Math.sin(', 'Math.cos(', 'Math.tan(', 'Math.sqrt(', '/100']
+	const [sum, setSum] = useState<string>('')
+	const [calculation, setCalculation] = useState<string>('')
+	const [drawScreen, setDrawScreen] = useState<string[]>([])
 
-	const handleSum = () => {}
-
-	const handleNumberArray = (inputNumber: number | string) => {
+	const handleNumberArray = (inputNumber: string): void => {
 		if (inputNumber === '=') {
-			handleSum()
-		} else
-			setCurrentStep((prevState: string) => {
-				return prevState + inputNumber.toString
+			setSum(eval(calculation + inputNumber))
+		} else if (inputNumber === 'del') {
+			setCalculation((current: string) => {
+				return current.slice(0, -1)
 			})
-	}
-
-	const handleSymArray = (inputSym: string) => {
-		currentCalculation.push(currentStep)
-		setCurrentStep(inputSym)
-		currentCalculation.push(inputSym)
+			setSum(eval(calculation.slice(0, -1)))
+		} else {
+			setCalculation((current: string) => current + inputNumber)
+			setSum(eval(calculation + inputNumber))
+		}
 	}
 
 	return (
 		<>
+			<Screen showScreen={sum} />
+			<Screen showScreen={calculation} />
 			<div style={{ display: 'flex' }}>
 				<div
 					style={{
 						display: 'grid',
 						gridTemplateColumns: 'repeat(3, 1fr)',
-						gridGap: '10px',
-						width: '300px'
+						gridGap: '1px',
+						width: '200px'
 					}}
 				>
-					{numberArray.map((numberInput: string | number) => {
-						return <Button handleNumber={handleNumberArray} sym={numberInput} />
+					{numberArray.map((numberInput: string) => {
+						return <Button handleInput={handleNumberArray} sym={numberInput} />
 					})}
 				</div>
-				<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-					{symArray.map((number: string) => {
-						return <Button sym={number} />
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					{operatorsArray.map((operator: string) => {
+						return <Button handleInput={handleNumberArray} sym={operator} />
 					})}
 				</div>
 			</div>
