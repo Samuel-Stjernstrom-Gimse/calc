@@ -19,14 +19,14 @@ export const Calculator = () => {
 		'0',
 		'.',
 		'=',
+		'*',
 		'(',
 		')',
+		'Math.sqrt(',
 		'/',
-		'*',
 		'Math.sin(',
 		'Math.cos(',
 		'Math.tan(',
-		'Math.sqrt(',
 		'/100'
 	]
 
