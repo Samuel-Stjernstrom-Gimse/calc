@@ -33,6 +33,7 @@ export const Calculator = () => {
 	const [sum, setSum] = useState<string>('')
 	const [calculation, setCalculation] = useState<string[]>([])
 	const [drawScreen, setDrawScreen] = useState<string[]>([])
+	const [theme, setTheme] = useState<string>('1')
 
 	const handleNumberArray = (inputNumber: string): void => {
 		const screenInput: string =
@@ -77,21 +78,42 @@ export const Calculator = () => {
 		}
 	}
 
+	const handleTheme = (event) => {
+		console.log(event.target.value)
+		setTheme(event.target.value)
+	}
+
+	const bgColor = theme === '1' ? 'hsl(223, 31%, 20%)' : theme === '2' ? ' hsl(0, 5%, 81%)' : ' hsl(268, 71%, 12%)'
+
 	return (
 		<>
-			<Screen showScreen={sum} />
-			<Screen showScreen={drawScreen.join('')} />
-			<div style={{ display: 'flex' }}>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+					width: '40vw'
+				}}
+			>
+				<input onChange={handleTheme} type={'range'} max={3} step={1} min={1} defaultValue={1} />
+				<Screen borderRadiusTopOrBottom={'top'} showScreen={sum} />
+				<Screen borderRadiusTopOrBottom={'bottom'} showScreen={drawScreen.join('')} />
 				<div
+					className={'calculator-default'}
 					style={{
 						display: 'grid',
 						gridTemplateColumns: 'repeat(4, 1fr)',
-						gridGap: '1px',
-						width: '200px'
+						alignItems: 'center',
+						justifyContent: 'center',
+						width: '100%',
+						backgroundColor: bgColor
 					}}
 				>
 					{numberArray.map((numberInput: string) => {
-						return <Button handleInput={handleNumberArray} sym={numberInput} />
+						return (
+							<Button theme={theme} key={numberInput} handleInput={handleNumberArray} sym={numberInput} />
+						)
 					})}
 				</div>
 			</div>

@@ -1,0 +1,47 @@
+*{
+    font-weight: 700;
+    font-size: 32px;
+    overflow: hidden;
+    font-family: League Spartan, Arial, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: hsl(222, 26%, 31%);
+}
+.screen-default{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    text-align: right;
+    width: 40vw;
+    height: 64px;
+    padding-right: 1.3rem;
+    background-color: hsl(224, 36%, 15%);
+    color: hsl(0, 0%, 100%);
+}
+
+
+.button-default{
+    border-radius: 0.2rem;
+    text-align: center;
+    cursor: pointer;
+    width: 70%;
+    height: 70% ;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calculator-default {
+    margin-top: 0.5rem;
+    height: 65vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+}

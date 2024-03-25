@@ -1,21 +1,20 @@
 interface Props {
 	showScreen: string | number
+	borderRadiusTopOrBottom: 'top' | 'bottom'
 }
 
 export const Screen = (props: Props) => {
 	return (
 		<>
 			<div
-				style={{
-					height: '3rem',
-					width: '300px',
-					backgroundColor: 'grey',
-					color: 'white',
-					border: '2px solid black',
-					borderRadius: '0.5rem'
-				}}
+				style={
+					props.borderRadiusTopOrBottom === 'top'
+						? { borderRadius: ' 10px 10px  0 0 ' }
+						: { borderRadius: '0 0 10px 10px' }
+				}
+				className={'screen-default'}
 			>
-				<h2 style={{ fontFamily: 'Arial' }}>{props.showScreen}</h2>
+				<h2 style={{ fontFamily: 'League Spartan' }}>{props.showScreen}</h2>
 			</div>
 		</>
 	)
