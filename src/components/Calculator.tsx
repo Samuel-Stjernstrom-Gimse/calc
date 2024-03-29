@@ -1,5 +1,5 @@
 import { Button } from './Button.tsx'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Screen } from './Screen.tsx'
 import { inputMappings, numberArray } from '../helpers/typesAndArrays.ts'
 
@@ -16,21 +16,11 @@ export const Calculator = () => {
 			setSum(eval(calculation.join('')))
 		} else if (inputNumber === 'del') {
 			setCalculation((current: string[]) => {
-				if (calculation.length === 1) {
-					return [' ']
-				} else {
-					return current.slice(0, -1)
-				}
+				return calculation.length === 1 ? [' '] : current.slice(0, -1)
 			})
-
 			setDrawScreen((current: string[]): [string] | string[] => {
-				if (drawScreen.length === 1) {
-					return [' ']
-				} else {
-					return current.slice(0, -1)
-				}
+				return drawScreen.length === 1 ? [' '] : current.slice(0, -1)
 			})
-
 			setSum(eval(calculation.slice(0, -1).join('')))
 		} else {
 			setDrawScreen((prevState: string[]) => [...prevState, screenInput])
@@ -39,7 +29,7 @@ export const Calculator = () => {
 		}
 	}
 
-	const handleTheme = (event) => {
+	const handleTheme = (event: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(event.target.value)
 		setTheme(event.target.value)
 	}
