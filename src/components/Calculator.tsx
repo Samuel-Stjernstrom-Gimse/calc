@@ -1,55 +1,16 @@
 import { Button } from './Button.tsx'
 import { useState } from 'react'
 import { Screen } from './Screen.tsx'
+import { inputMappings, numberArray } from '../helpers/typesAndArrays.ts'
 
 export const Calculator = () => {
-	const numberArray: string[] = [
-		'7',
-		'8',
-		'9',
-		'del',
-		'4',
-		'5',
-		'6',
-		'+',
-		'1',
-		'2',
-		'3',
-		'-',
-		'0',
-		'.',
-		'=',
-		'*',
-		'(',
-		')',
-		'Math.sqrt(',
-		'/',
-		'Math.sin(',
-		'Math.cos(',
-		'Math.tan(',
-		'/100'
-	]
-
 	const [sum, setSum] = useState<string>('')
 	const [calculation, setCalculation] = useState<string[]>([])
 	const [drawScreen, setDrawScreen] = useState<string[]>([])
 	const [theme, setTheme] = useState<string>('1')
 
 	const handleNumberArray = (inputNumber: string): void => {
-		const screenInput: string =
-			inputNumber === 'Math.cos('
-				? 'cos('
-				: inputNumber === 'Math.sin('
-					? 'sin('
-					: inputNumber === 'Math.tan('
-						? 'tan('
-						: inputNumber === 'Math.sqrt('
-							? '√('
-							: inputNumber === '/100'
-								? '%'
-								: inputNumber === 'del'
-									? ' '
-									: inputNumber
+		const screenInput: string = inputMappings[inputNumber] || inputNumber
 
 		if (inputNumber === '=') {
 			setSum(eval(calculation.join('')))
