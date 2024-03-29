@@ -38,10 +38,10 @@ export const Button = (props: Props) => {
 
 	const colorStyle =
 		props.theme === '1'
-			? themes.theme1.primary
+			? themes.theme1.buttonStyle.primary
 			: props.theme === '2'
-				? themes.theme2.primary
-				: themes.theme3.primary
+				? themes.theme2.buttonStyle.primary
+				: themes.theme3.buttonStyle.primary
 	const buttonStyle = click ? colorStyle.active : hover ? colorStyle.hover : colorStyle.still
 
 	return (
