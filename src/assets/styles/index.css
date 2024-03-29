@@ -8,9 +8,7 @@
     box-sizing: border-box;
 }
 
-body{
-    background-color: hsl(222, 26%, 31%);
-}
+
 .screen-default{
     display: flex;
     align-items: center;

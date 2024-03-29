@@ -96,9 +96,12 @@ export const Calculator = () => {
 					width: '40vw'
 				}}
 			>
-				<input onChange={handleTheme} type={'range'} max={3} step={1} min={1} defaultValue={1} />
-				<Screen borderRadiusTopOrBottom={'top'} showScreen={sum} />
-				<Screen borderRadiusTopOrBottom={'bottom'} showScreen={drawScreen.join('')} />
+				<div style={{ display: 'flex' }}>
+					<h2>calc</h2>
+					<input onChange={handleTheme} type={'range'} max={3} step={1} min={1} defaultValue={1} />
+				</div>
+				<Screen theme={theme} borderRadiusTopOrBottom={'top'} showScreen={sum} />
+				<Screen theme={theme} borderRadiusTopOrBottom={'bottom'} showScreen={drawScreen.join('')} />
 				<div
 					className={'calculator-default'}
 					style={{
