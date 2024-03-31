@@ -1,10 +1,33 @@
 import { useState } from 'react'
-import { themes } from '../helpers/typesAndArrays.ts'
+import { themes } from '../helpers/typesAndArrays'
 
 interface Props {
 	sym: string
 	handleInput: (inputNumber: string) => void
-	theme: string
+	theme: '1' | '2' | '3'
+}
+
+interface ButtonStyle {
+	backgroundColor: string
+	boxShadow: string
+	color: string
+}
+
+interface ButtonStates {
+	active: ButtonStyle
+	hover: ButtonStyle
+	still: ButtonStyle
+}
+
+interface ButtonStyles {
+	primary: ButtonStates
+	secondary: ButtonStates
+	tertiary: ButtonStates
+}
+
+interface Theme {
+	backgroundColorScreen?: string
+	buttonStyle: ButtonStyles
 }
 
 export const Button = (props: Props) => {
@@ -36,21 +59,38 @@ export const Button = (props: Props) => {
 		setClick(false)
 	}
 
-	const colorStyle =
-		props.theme === '1'
-			? themes.theme1.buttonStyle.primary
-			: props.theme === '2'
-				? themes.theme2.buttonStyle.primary
-				: themes.theme3.buttonStyle.primary
-	const buttonStyle = click ? colorStyle.active : hover ? colorStyle.hover : colorStyle.still
+	const theme: Theme = props.theme === '1' ? themes.theme1 : props.theme === '2' ? themes.theme2 : themes.theme3
+
+	let colorStyle: ButtonStyle =
+		props.sym === 'del'
+			? theme.buttonStyle.tertiary.still
+			: props.sym === '='
+				? theme.buttonStyle.secondary.still
+				: theme.buttonStyle.primary.still
+
+	if (click) {
+		colorStyle =
+			props.sym === 'del'
+				? theme.buttonStyle.tertiary.active
+				: props.sym === '='
+					? theme.buttonStyle.secondary.active
+					: theme.buttonStyle.primary.active
+	} else if (hover) {
+		colorStyle =
+			props.sym === 'del'
+				? theme.buttonStyle.tertiary.hover
+				: props.sym === '='
+					? theme.buttonStyle.secondary.hover
+					: theme.buttonStyle.primary.hover
+	}
 
 	return (
 		<>
 			<div
 				style={{
-					backgroundColor: buttonStyle.backgroundColor,
-					boxShadow: buttonStyle.boxShadow,
-					color: buttonStyle.color
+					backgroundColor: colorStyle.backgroundColor,
+					boxShadow: colorStyle.boxShadow,
+					color: colorStyle.color
 				}}
 				className={'button-default'}
 				onClick={() => props.handleInput(props.sym)}

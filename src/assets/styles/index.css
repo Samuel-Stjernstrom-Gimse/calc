@@ -10,6 +10,7 @@
 
 
 .screen-default{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -19,6 +20,13 @@
     padding-right: 1.3rem;
     background-color: hsl(224, 36%, 15%);
     color: hsl(0, 0%, 100%);
+}
+
+.live-calc{
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    font-size: 12px;
 }
 
 
@@ -32,7 +40,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.2s;
 }
+
 .calculator-default {
     margin-top: 0.5rem;
     height: 65vh;
