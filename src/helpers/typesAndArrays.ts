@@ -47,6 +47,7 @@ interface Theme {
 	backgroundColorScreen: string
 	backgroundColorButtons: string
 	backgroundColor: string
+	fontColorScreen: string
 	buttonStyle: ButtonStyles
 }
 
@@ -59,6 +60,7 @@ export const themes: Themes = {
 		backgroundColor: 'rgb(59,69,99)',
 		backgroundColorScreen: 'hsl(224,35%,15%)',
 		backgroundColorButtons: 'hsl(224,29%,20%)',
+		fontColorScreen: 'hsl(0,0%,99%)',
 		buttonStyle: {
 			primary: {
 				still: {
@@ -117,6 +119,7 @@ export const themes: Themes = {
 		backgroundColor: 'rgb(228,228,228)',
 		backgroundColorScreen: 'hsl(0,0%,93%)',
 		backgroundColorButtons: 'hsl(0,6%,81%)',
+		fontColorScreen: 'hsl(60, 10%, 19%)',
 		buttonStyle: {
 			primary: {
 				still: {
@@ -175,6 +178,7 @@ export const themes: Themes = {
 		backgroundColor: 'rgb(23,6,42)',
 		backgroundColorScreen: 'hsl(269,74%,12%)',
 		backgroundColorButtons: 'hsl(268,75%,12%)',
+		fontColorScreen: 'hsl(53,97%,62%)',
 		buttonStyle: {
 			primary: {
 				still: {
