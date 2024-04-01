@@ -31,6 +31,7 @@
 
 
 .button-default{
+    user-select: none;
     border-radius: 0.2rem;
     text-align: center;
     cursor: pointer;
