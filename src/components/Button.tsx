@@ -26,6 +26,7 @@ export const Button = (props: Props) => {
 
 	const handleMouseOut = (): void => {
 		setHover(false)
+		setClick(false)
 	}
 
 	const handleMouseDown = (): void => {
