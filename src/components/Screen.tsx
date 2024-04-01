@@ -21,7 +21,7 @@ export const Screen = (props: Props) => {
 				}
 				className={'screen-default'}
 			>
-				{props.liveScreen ? <h6 className={'live-calc'}>live calc</h6> : null}
+				{props.liveScreen ? <h6 className={'live-calc'}>live</h6> : null}
 				<h2 style={{ fontFamily: 'League Spartan' }}>{props.showScreen}</h2>
 			</div>
 		</>
