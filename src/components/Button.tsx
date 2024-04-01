@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ButtonStyle, symbolMap, Theme } from '../helpers/typesAndArrays.ts'
+import { ButtonStates, ButtonStyle, symbolMap, Theme } from '../helpers/typesAndArrays.ts'
 
 interface Props {
 	sym: string
@@ -8,57 +8,41 @@ interface Props {
 }
 
 export const Button = (props: Props) => {
-	const [hover, setHover] = useState(false)
-	const [click, setClick] = useState(false)
-	const theme: Theme = props.colorTheme
-	const buttonSymbol = symbolMap[props.sym] || props.sym
+	const [hover, setHover] = useState<boolean>(false)
+	const [click, setClick] = useState<boolean>(false)
+	const buttonSymbol: string = symbolMap[props.sym] || props.sym
+	const colorStyle: ButtonStates =
+		props.sym === 'del'
+			? props.colorTheme.buttonStyle.tertiary
+			: props.sym === '='
+				? props.colorTheme.buttonStyle.secondary
+				: props.colorTheme.buttonStyle.primary
 
-	const handleHover = () => {
+	const color: ButtonStyle = click ? colorStyle.active : hover ? colorStyle.hover : colorStyle.still
+
+	const handleHover = (): void => {
 		setHover(true)
 	}
 
-	const handleMouseOut = () => {
+	const handleMouseOut = (): void => {
 		setHover(false)
 	}
 
-	const handleMouseDown = () => {
+	const handleMouseDown = (): void => {
 		setClick(true)
 	}
 
-	const handleMouseUp = () => {
+	const handleMouseUp = (): void => {
 		setClick(false)
-	}
-
-	let colorStyle: ButtonStyle =
-		props.sym === 'del'
-			? theme.buttonStyle.tertiary.still
-			: props.sym === '='
-				? theme.buttonStyle.secondary.still
-				: theme.buttonStyle.primary.still
-
-	if (click) {
-		colorStyle =
-			props.sym === 'del'
-				? theme.buttonStyle.tertiary.active
-				: props.sym === '='
-					? theme.buttonStyle.secondary.active
-					: theme.buttonStyle.primary.active
-	} else if (hover) {
-		colorStyle =
-			props.sym === 'del'
-				? theme.buttonStyle.tertiary.hover
-				: props.sym === '='
-					? theme.buttonStyle.secondary.hover
-					: theme.buttonStyle.primary.hover
 	}
 
 	return (
 		<>
 			<div
 				style={{
-					backgroundColor: colorStyle.backgroundColor,
-					boxShadow: colorStyle.boxShadow,
-					color: colorStyle.color
+					backgroundColor: color.backgroundColor,
+					boxShadow: color.boxShadow,
+					color: color.color
 				}}
 				className={'button-default'}
 				onClick={() => props.handleInput(props.sym)}

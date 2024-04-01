@@ -38,9 +38,7 @@ export const Calculator = () => {
 
 	const handleTheme = (event: React.ChangeEvent<HTMLInputElement>) => {
 		console.log(event.target.value)
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
-		setTheme(event.target.value)
+		setTheme(event.target.value as '1' | '2' | '3')
 	}
 
 	return (
