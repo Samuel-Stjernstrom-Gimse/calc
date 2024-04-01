@@ -37,22 +37,9 @@ export const Button = (props: Props) => {
 		setClick(false)
 	}
 
-	const isNumericButton: boolean = [
-		'.',
-		'reset',
-		'del',
-		'=',
-		'0',
-		'1',
-		'2',
-		'3',
-		'4',
-		'5',
-		'6',
-		'7',
-		'8',
-		'9'
-	].includes(buttonSymbol)
+	const fullOpacity: boolean = ['.', 'reset', 'del', '=', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(
+		buttonSymbol
+	)
 
 	return (
 		<>
@@ -65,7 +52,7 @@ export const Button = (props: Props) => {
 						buttonSymbol === '=' || buttonSymbol === 'reset' || buttonSymbol === 'del'
 							? 'span 2'
 							: 'span 1',
-					opacity: !isNumericButton ? 0.8 : 1
+					opacity: !fullOpacity ? 0.6 : 1
 				}}
 				className={'button-default'}
 				onClick={() => props.handleInput(props.sym)}

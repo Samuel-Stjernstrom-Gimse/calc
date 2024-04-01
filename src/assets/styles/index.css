@@ -1,4 +1,4 @@
-*{
+* {
     font-weight: 700;
     font-size: 32px;
     overflow: hidden;
@@ -9,7 +9,7 @@
 }
 
 
-.screen-default{
+.screen-default {
     position: relative;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
     color: hsl(0, 0%, 100%);
 }
 
-.live-calc{
+.live-calc {
     position: absolute;
     left: 0.5rem;
     top: 0.5rem;
@@ -30,7 +30,7 @@
 }
 
 
-.button-default{
+.button-default {
     user-select: none;
     border-radius: 0.2rem;
     text-align: center;
@@ -56,13 +56,14 @@
     grid-gap: 10px;
 }
 
-.calc-wrapper{
+.calc-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 40vw;
 }
+
 .full-page {
     transition: 0.7s;
     width: 100vw;
