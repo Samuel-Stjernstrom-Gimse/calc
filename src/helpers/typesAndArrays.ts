@@ -28,11 +28,11 @@ export interface Themes {
 	[key: string]: Theme
 }
 
-interface SymbolMap {
+interface Map {
 	[key: string]: string
 }
 
-export const inputMappings: { [key: string]: string } = {
+export const inputMappings: Map = {
 	'Math.cos(': 'cos(',
 	'Math.sin(': 'sin(',
 	'Math.tan(': 'tan(',
@@ -43,7 +43,7 @@ export const inputMappings: { [key: string]: string } = {
 	'/': '÷'
 } as const
 
-export const symbolMap: SymbolMap = {
+export const symbolMap: Map = {
 	'Math.sqrt(': '√',
 	'Math.cos(': 'cos',
 	'Math.sin(': 'sin',
