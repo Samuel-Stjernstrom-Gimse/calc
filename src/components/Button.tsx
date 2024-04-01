@@ -14,7 +14,7 @@ export const Button = (props: Props) => {
 	const colorStyle: ButtonStates =
 		props.sym === 'del'
 			? props.colorTheme.buttonStyle.tertiary
-			: props.sym === '='
+			: props.sym === '=' || props.sym === 'reset'
 				? props.colorTheme.buttonStyle.secondary
 				: props.colorTheme.buttonStyle.primary
 
@@ -37,13 +37,35 @@ export const Button = (props: Props) => {
 		setClick(false)
 	}
 
+	const isNumericButton: boolean = [
+		'.',
+		'reset',
+		'del',
+		'=',
+		'0',
+		'1',
+		'2',
+		'3',
+		'4',
+		'5',
+		'6',
+		'7',
+		'8',
+		'9'
+	].includes(buttonSymbol)
+
 	return (
 		<>
 			<div
 				style={{
 					backgroundColor: color.backgroundColor,
 					boxShadow: color.boxShadow,
-					color: color.color
+					color: color.color,
+					gridColumn:
+						buttonSymbol === '=' || buttonSymbol === 'reset' || buttonSymbol === 'del'
+							? 'span 2'
+							: 'span 1',
+					opacity: !isNumericButton ? 0.8 : 1
 				}}
 				className={'button-default'}
 				onClick={() => props.handleInput(props.sym)}

@@ -1,8 +1,9 @@
 import { Button } from './Button.tsx'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Screen } from './Screen.tsx'
 import { inputMappings, numberArray, Theme } from '../helpers/typesAndArrays.ts'
 import { themes } from '../helpers/theme.ts'
+import Switch from './Switch.tsx'
 
 export const Calculator = () => {
 	const [sum, setSum] = useState<string>('')
@@ -29,6 +30,10 @@ export const Calculator = () => {
 				return drawScreen.length === 1 ? [' '] : current.slice(0, -1)
 			})
 			setSum(eval(calculation.slice(0, -1).join('')))
+		} else if (inputNumber === 'reset') {
+			setCalculation([])
+			setDrawScreen([])
+			setSum('')
 		} else {
 			setDrawScreen((prevState: string[]) => [...prevState, screenInput])
 			setCalculation((current: string[]) => [...current, inputNumber])
@@ -36,9 +41,10 @@ export const Calculator = () => {
 		}
 	}
 
-	const handleTheme = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		console.log(event.target.value)
-		setTheme(event.target.value as '1' | '2' | '3')
+	const handleThemeCount = (): void => {
+		if (theme === '1') setTheme('2')
+		if (theme === '2') setTheme('3')
+		if (theme === '3') setTheme('1')
 	}
 
 	return (
@@ -49,9 +55,17 @@ export const Calculator = () => {
 			}}
 		>
 			<div className={'calc-wrapper'}>
-				<div style={{ display: 'flex' }}>
-					<h2>calc</h2>
-					<input onChange={handleTheme} type={'range'} max={3} step={1} min={1} defaultValue={1} />
+				<div
+					style={{
+						display: 'flex',
+						gap: '24vw',
+						justifyContent: 'space-between',
+						width: '40vw',
+						marginBottom: '1rem'
+					}}
+				>
+					<h2 style={{ color: colorTheme.fontColorScreen, overflow: 'visible' }}>calc</h2>
+					<Switch theme={theme} colorTheme={colorTheme} handler={() => handleThemeCount()} />
 				</div>
 				<Screen colorTheme={colorTheme} liveScreen={true} borderRadiusTopOrBottom={'top'} showScreen={sum} />
 				<Screen
