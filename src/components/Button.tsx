@@ -1,47 +1,17 @@
 import { useState } from 'react'
-import { themes } from '../helpers/typesAndArrays'
+import { ButtonStyle, symbolMap, Theme } from '../helpers/typesAndArrays.ts'
 
 interface Props {
 	sym: string
 	handleInput: (inputNumber: string) => void
-	theme: '1' | '2' | '3'
-}
-
-interface ButtonStyle {
-	backgroundColor: string
-	boxShadow: string
-	color: string
-}
-
-interface ButtonStates {
-	active: ButtonStyle
-	hover: ButtonStyle
-	still: ButtonStyle
-}
-
-interface ButtonStyles {
-	primary: ButtonStates
-	secondary: ButtonStates
-	tertiary: ButtonStates
-}
-
-interface Theme {
-	backgroundColorScreen?: string
-	buttonStyle: ButtonStyles
+	colorTheme: Theme
 }
 
 export const Button = (props: Props) => {
-	let buttonSymbol: string = props.sym
-	if (props.sym === 'Math.sqrt(') buttonSymbol = '√'
-	if (props.sym === 'Math.cos(') buttonSymbol = 'cos'
-	if (props.sym === 'Math.sin(') buttonSymbol = 'sin'
-	if (props.sym === 'Math.tan(') buttonSymbol = 'tan'
-	if (props.sym === '/100') buttonSymbol = '%'
-	if (props.sym === '*') buttonSymbol = 'x'
-	if (props.sym === '/') buttonSymbol = '÷'
-
 	const [hover, setHover] = useState(false)
 	const [click, setClick] = useState(false)
+	const theme: Theme = props.colorTheme
+	const buttonSymbol = symbolMap[props.sym] || props.sym
 
 	const handleHover = () => {
 		setHover(true)
@@ -58,8 +28,6 @@ export const Button = (props: Props) => {
 	const handleMouseUp = () => {
 		setClick(false)
 	}
-
-	const theme: Theme = props.theme === '1' ? themes.theme1 : props.theme === '2' ? themes.theme2 : themes.theme3
 
 	let colorStyle: ButtonStyle =
 		props.sym === 'del'
