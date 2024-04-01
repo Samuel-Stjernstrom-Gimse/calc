@@ -22,7 +22,7 @@ export const Calculator = () => {
 			setCalculation([result.toString()])
 			setDrawScreen([result.toString()])
 		} else if (inputNumber === 'del') {
-			setCalculation((current: string[]) => {
+			setCalculation((current: string[]): [string] | string[] => {
 				return calculation.length === 1 ? [' '] : current.slice(0, -1)
 			})
 			setDrawScreen((current: string[]): [string] | string[] => {
@@ -36,7 +36,7 @@ export const Calculator = () => {
 		}
 	}
 
-	const handleTheme = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleTheme = (event: React.ChangeEvent<HTMLInputElement>): void => {
 		console.log(event.target.value)
 		setTheme(event.target.value as '1' | '2' | '3')
 	}
